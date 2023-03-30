@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('produk',function(Blueprint $table){
-            $table->unsignedBigInteger('kategori_id')->nullable()->after('id');
-            
-        });
-    }
+            $table->text('gambar')->nullable()->after('deskripsi');
+    });
+}
 
     /**
      * Reverse the migrations.
@@ -23,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('produk',function(Blueprint $table){
-            $table->dropColumn('kategori_id');
+            $table->dropColumn('gambar');
         });
     }
 };
