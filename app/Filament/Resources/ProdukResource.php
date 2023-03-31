@@ -25,10 +25,10 @@ class ProdukResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('nama'),
                 Forms\Components\Textarea::make('deskripsi'),
-                Forms\Components\FileUpload::make('gambar')->disk('public')->required(),
+                Forms\Components\FileUpload::make('gambar')->image('public')->required(),
                 Forms\Components\Select::make('kategori_id')->relationship('kategori','nama'),
-                Forms\Components\TextInput::make('harga'),
-                Forms\Components\TextInput::make('stok')
+                Forms\Components\TextInput::make('harga')->numeric(),
+                Forms\Components\TextInput::make('stok')->numeric()
                 //
             ]);
     }

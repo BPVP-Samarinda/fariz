@@ -23,7 +23,12 @@ class CustomerResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('nama')->ColumnSpan('full'),
+                Forms\Components\Textarea::make('alamat')->ColumnSpan('full'),
+                Forms\Components\date::make('tanggal_lahir'),
+                Forms\Components\toggle::make('jenis_kelamin'),
+                Forms\Components\TextInput::make('telpon'),
+                Forms\Components\toggle::make('status')
             ]);
     }
 
