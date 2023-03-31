@@ -23,12 +23,12 @@ class CustomerResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama')->ColumnSpan('full'),
-                Forms\Components\Textarea::make('alamat')->ColumnSpan('full'),
-                Forms\Components\date::make('tanggal_lahir'),
-                Forms\Components\toggle::make('jenis_kelamin'),
-                Forms\Components\TextInput::make('telpon'),
-                Forms\Components\toggle::make('status')
+                Forms\Components\TextInput::make('nama')->ColumnSpan('full')->required(),
+                Forms\Components\Textarea::make('alamat')->ColumnSpan('full')->required(),
+                Forms\Components\DatePicker::make('tanggal_lahir')->required(),
+                Forms\Components\Radio::make('jenis_kelamin')->required()->options(['L'=>'Laki-Laki','P'=>'Perempuan']),
+                Forms\Components\TextInput::make('telpon')->numeric()->required(),
+                Forms\Components\Toggle::make('status')->required()->onColor('success')->offColor('danger'),
             ]);
     }
 
@@ -36,7 +36,16 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nama')->ColumnSpan('full'),
+                Tables\Columns\TextColumn::make('alamat')->ColumnSpan('full'),
+                Tables\Columns\TextColumn::make('tanggal_lahir'),
+                Tables\Columns\TextColumn::make('jenis_kelamin'),
+                Tables\Columns\TextColumn::make('telpon'),
+                Tables\Columns\BadgeColumn::make('status')->enum([0=>"tidak aktif", 1=>"aktif"])
+                ->colors([
+                'danger' => static fn ($stat):bool => $stat == 0, 
+                'success' => static fn ($stat):bool=> $stat == 1]),
+   
             ])
             ->filters([
                 //

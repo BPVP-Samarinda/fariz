@@ -17,8 +17,8 @@ return new class extends Migration
            $table->text('alamat')->nullable();
            $table->date('tanggal_lahir')->defautlt(0);
            $table->string('jenis_kelamin')->nullable();
-           $table->double('telpon')->nullable();
-           $table->srting('status')->nullable();
+           $table->string('telpon')->nullable();
+           $table->string('status')->nullable();
            $table->timestamps();
            
         });
