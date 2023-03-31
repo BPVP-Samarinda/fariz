@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProdukResource\Pages;
-use App\Filament\Resources\ProdukResource\RelationManagers;
-use App\Models\Produk;
+use App\Filament\Resources\CustomerResource\Pages;
+use App\Filament\Resources\CustomerResource\RelationManagers;
+use App\Models\Customer;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProdukResource extends Resource
+class CustomerResource extends Resource
 {
-    protected static ?string $model = Produk::class;
+    protected static ?string $model = Customer::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
@@ -23,12 +23,6 @@ class ProdukResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama'),
-                Forms\Components\Textarea::make('deskripsi'),
-                Forms\Components\FileUpload::make('gambar')->disk('public')->required(),
-                Forms\Components\Select::make('kategori_id')->relationship('kategori','nama'),
-                Forms\Components\TextInput::make('harga'),
-                Forms\Components\TextInput::make('stok')
                 //
             ]);
     }
@@ -37,11 +31,6 @@ class ProdukResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama'),
-                Tables\Columns\TextColumn::make('kategori.nama'),
-                Tables\Columns\ImageColumn::make('gambar'),
-                Tables\Columns\TextColumn::make('harga'),
-                Tables\Columns\TextColumn::make('stok')
                 //
             ])
             ->filters([
@@ -59,7 +48,7 @@ class ProdukResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageProduks::route('/'),
+            'index' => Pages\ManageCustomers::route('/'),
         ];
     }    
 }
